@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body {
+    position: relative;
+    }
+    canvas {
+        position: absolute;
+        left: 50%; top: 50%;
+        transform: translate(-50%, -0%);
+        background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="500", height="300"></canvas>
+  <script>
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    var ball = {
+      x: 0,
+      y: 0,
+      r: 10,
+      draw: function () {
+        ctx.clearRect(0, 0, 500, 300);
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, 2*Math.PI);
+        ctx.stroke();
+      }
+    }
+    canvas.onmousemove = function (e) {
+      ball.x = e.offsetX;
+      ball.y = e.offsetY;
+    }
+    var timer = setInterval(function () {
+      ball.draw();
+    }, 30);
+  </script>
+</body>
+</html>
